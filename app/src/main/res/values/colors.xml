@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+
+    <color name="brand_primary">#1E155E</color>
+    <color name="brand_primary_light">#2E2080</color>
+    <color name="brand_primary_lighter">#3B2CA0</color>
+    <color name="brand_primary_accent">#4A3AB8</color>
+    <color name="brand_primary_highlight">#5441C4</color>
+    <color name="brand_primary_dark">#0D0836</color>
+
+
+    <color name="brand_on_primary">#FFFFFF</color>
+    <color name="brand_on_primary_muted">#E0DCFF</color>
+
+
+    <color name="neutral_white">#FFFFFF</color>
+    <color name="neutral_black">#000000</color>
+</resources>

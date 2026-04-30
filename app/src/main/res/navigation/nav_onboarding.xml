@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.appsira.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_login_to_register"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_login_to_recuperar"
+            app:destination="@id/recuperarContraFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.appsira.signup.RegisterFragment"
+        android:label="Registro"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_register_to_registrarInformacion"
+            app:destination="@id/registrarInformacionFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/recuperarContraFragment"
+        android:name="com.example.appsira.RecuperarContraFragment"
+        android:label="Recuperar contraseña"
+        tools:layout="@layout/fragment_recuperar_contra" />
+
+    <fragment
+        android:id="@+id/registrarInformacionFragment"
+        android:name="com.example.appsira.RegistrarInformacionFragment"
+        android:label="Información personal"
+        tools:layout="@layout/fragment_registrar_informacion" />
+
+</navigation>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Base: gradiente del color principal a uno más oscuro -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="linear"
+                android:angle="315"
+                android:startColor="#2E2080"
+                android:centerColor="#1E155E"
+                android:endColor="#0D0836" />
+        </shape>
+    </item>
+
+    <!-- Esfera grande superior derecha -->
+    <item
+        android:width="220dp"
+        android:height="220dp"
+        android:top="-60dp"
+        android:right="-60dp"
+        android:gravity="top|end">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="110dp"
+                android:centerX="0.4"
+                android:centerY="0.4"
+                android:startColor="#4A3AB8"
+                android:endColor="#1E155E" />
+        </shape>
+    </item>
+
+    <!-- Esfera mediana centro-izquierda -->
+    <item
+        android:width="160dp"
+        android:height="160dp"
+        android:left="-40dp"
+        android:top="140dp"
+        android:gravity="top|start">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="80dp"
+                android:centerX="0.5"
+                android:centerY="0.5"
+                android:startColor="#3B2CA0"
+                android:endColor="#1E155E" />
+        </shape>
+    </item>
+
+    <!-- Esfera pequeña derecha abajo -->
+    <item
+        android:width="140dp"
+        android:height="140dp"
+        android:right="20dp"
+        android:bottom="40dp"
+        android:gravity="bottom|end">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="70dp"
+                android:centerX="0.5"
+                android:centerY="0.5"
+                android:startColor="#5441C4"
+                android:endColor="#1E155E" />
+        </shape>
+    </item>
+
+</layer-list>
