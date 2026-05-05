@@ -1,5 +1,6 @@
-package com.example.appsira
+package com.example.appsira.onboarding.signIn
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,9 +12,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import com.example.appsira.R
+import com.example.appsira.onboarding.signIn.SignInViewModel
 import com.example.appsira.core.FragmentCommunicator
 import com.example.appsira.core.ResponseService
 import com.example.appsira.databinding.FragmentLoginBinding
+import com.example.appsira.home.HomeActivity
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
@@ -67,22 +71,24 @@ class LoginFragment : Fragment() {
 
     private fun observeState() {
         viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
+            repeatOnLifecycle(state = Lifecycle.State.STARTED) {
                 viewModel.signInState.collect { state ->
                     when (state) {
                         is ResponseService.Loading -> {
-                            communicator.manageLoader(true)
+                            communicator.manageLoader(isVisible = true)
                             binding.btnLogin.isEnabled = false
                         }
                         is ResponseService.Success -> {
-                            communicator.manageLoader(false)
-                            // TODO: navegar a la pantalla principal
+                            communicator.manageLoader(isVisible = false)
+                            val intent = Intent(requireContext(), HomeActivity::class.java)
+                            intent.flags =
+                                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            startActivity(intent)
                         }
                         is ResponseService.Error -> {
-                            communicator.manageLoader(false)
+                            communicator.manageLoader(isVisible = false)
                             binding.btnLogin.isEnabled = true
-                            Snackbar.make(binding.root, state.error,
-                                Snackbar.LENGTH_LONG).show()
+                            Snackbar.make(binding.root, state.error, Snackbar.LENGTH_LONG).show()
                         }
                         null -> Unit
                     }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/neutral_white"
-    tools:context=".LoginFragment">
+    tools:context=".onboarding.signIn.LoginFragment">
 
     <!-- ===== HEADER CON GRADIENTE Y ESFERAS ===== -->
     <androidx.constraintlayout.widget.ConstraintLayout

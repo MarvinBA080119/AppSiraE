@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/neutral_white"
-    tools:context=".RegistrarInformacionFragment">
+    tools:context=".onboarding.personal.RegistrarInformacionFragment">
 
     <!-- ===== HEADER REDUCIDO CON ICONO PROTAGONISTA ===== -->
     <androidx.constraintlayout.widget.ConstraintLayout

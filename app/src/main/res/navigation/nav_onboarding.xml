@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.appsira.LoginFragment"
+        android:name="com.example.appsira.onboarding.signIn.LoginFragment"
         android:label="Login"
         tools:layout="@layout/fragment_login">
         <action
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.appsira.signup.RegisterFragment"
+        android:name="com.example.appsira.onboarding.signup.RegisterFragment"
         android:label="Registro"
         tools:layout="@layout/fragment_register">
         <action
@@ -30,13 +30,13 @@
 
     <fragment
         android:id="@+id/recuperarContraFragment"
-        android:name="com.example.appsira.RecuperarContraFragment"
+        android:name="com.example.appsira.onboarding.password.RecuperarContraFragment"
         android:label="Recuperar contraseña"
         tools:layout="@layout/fragment_recuperar_contra" />
 
     <fragment
         android:id="@+id/registrarInformacionFragment"
-        android:name="com.example.appsira.RegistrarInformacionFragment"
+        android:name="com.example.appsira.onboarding.personal.RegistrarInformacionFragment"
         android:label="Información personal"
         tools:layout="@layout/fragment_registrar_informacion" />
 

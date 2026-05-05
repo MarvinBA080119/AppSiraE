@@ -1,4 +1,4 @@
-package com.example.appsira
+package com.example.appsira.onboarding.personal
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

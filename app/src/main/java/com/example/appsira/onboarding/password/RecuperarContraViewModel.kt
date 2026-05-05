@@ -1,4 +1,4 @@
-package com.example.appsira
+package com.example.appsira.onboarding.password
 
 import android.util.Patterns
 import androidx.lifecycle.ViewModel

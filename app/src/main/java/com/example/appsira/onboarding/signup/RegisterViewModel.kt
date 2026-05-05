@@ -1,4 +1,4 @@
-package com.example.appsira
+package com.example.appsira.onboarding.signup
 
 import android.util.Patterns
 import androidx.lifecycle.ViewModel
@@ -11,14 +11,20 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class SignInViewModel : ViewModel() {
+class RegisterViewModel : ViewModel() {
 
-    val repository = AuthRepository()
+    private val authRepository = AuthRepository()
 
-    private val _signInState = MutableStateFlow<ResponseService<FirebaseUser>?>(null)
-    val signInState: StateFlow<ResponseService<FirebaseUser>?> = _signInState.asStateFlow()
+    private val _registerState = MutableStateFlow<ResponseService<FirebaseUser>?>(null)
+    val registerState: StateFlow<ResponseService<FirebaseUser>?> = _registerState.asStateFlow()
 
     // --- Validación ---
+    fun validateName(name: String): String? {
+        if (name.isBlank()) return "El nombre es requerido"
+        if (name.length < 2) return "Nombre demasiado corto"
+        return null
+    }
+
     fun validateEmail(email: String): String? {
         if (email.isBlank()) return "El correo es requerido"
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) return "Correo inválido"
@@ -31,16 +37,17 @@ class SignInViewModel : ViewModel() {
         return null
     }
 
-    fun isLoginFormValid(email: String, password: String): Boolean {
-        return validateEmail(email) == null &&
+    fun isRegisterFormValid(name: String, email: String, password: String): Boolean {
+        return validateName(name) == null &&
+                validateEmail(email) == null &&
                 validatePassword(password) == null
     }
 
-    // --- Operación de login ---
-    fun requestLogin(email: String, password: String) {
+    // --- Operación de registro ---
+    fun requestSignUp(email: String, password: String) {
         viewModelScope.launch {
-            _signInState.value = ResponseService.Loading
-            _signInState.value = repository.requestLogin(email, password)
+            _registerState.value = ResponseService.Loading
+            _registerState.value = authRepository.requestSignUp(email, password)
         }
     }
 }
