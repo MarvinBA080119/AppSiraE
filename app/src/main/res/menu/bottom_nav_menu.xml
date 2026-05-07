@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item
+        android:id="@+id/auditorioFragment"
+        android:icon="@drawable/auditorios_ic"
+        android:title="Auditorios"/>
+    <item
+        android:id="@+id/accountFragment"
+        android:icon="@drawable/account_ic"
+        android:title="Account"/>
+
 </menu>

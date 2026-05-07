@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_home">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_home"
+    app:startDestination="@id/auditorioFragment">
+
+    <fragment
+        android:id="@+id/auditorioFragment"
+        android:name="com.example.appsira.home.auditorios.auditoriosFragment"
+        android:label="fragment_play_lists"
+        tools:layout="@layout/fragment_auditorios" />
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="com.example.appsira.home.account.accountFragment"
+        android:label="fragment_account"
+        tools:layout="@layout/fragment_account" />
 
 </navigation>
