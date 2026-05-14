@@ -7,7 +7,6 @@ import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
@@ -15,7 +14,6 @@ import kotlinx.coroutines.withContext
 class AuthRepository : Authentication {
 
     val auth = FirebaseAuth.getInstance()
-    val firestore = FirebaseFirestore.getInstance()
 
     override suspend fun requestLogin(
         email: String, password: String
@@ -67,29 +65,6 @@ class AuthRepository : Authentication {
             ResponseService.Error(e.localizedMessage ?: "Error al enviar el correo")
         } catch (e: Exception) {
             ResponseService.Error("Error inesperado. Intenta de nuevo")
-        }
-    }
-
-    override suspend fun saveUserInfo(
-        uid: String,
-        name: String,
-        lastName: String,
-        username: String,
-        phone: String,
-        birthDate: String
-    ): ResponseService<Unit> = withContext(Dispatchers.IO) {
-        try {
-            val data = mapOf(
-                "name" to name,
-                "lastName" to lastName,
-                "username" to username,
-                "phone" to phone,
-                "birthDate" to birthDate
-            )
-            firestore.collection("users").document(uid).set(data).await()
-            ResponseService.Success(Unit)
-        } catch (e: Exception) {
-            ResponseService.Error("No se pudo guardar la información. Intenta de nuevo")
         }
     }
 }
