@@ -6,7 +6,5 @@ import retrofit2.Response
 
 interface AuditorioAPI {
     @GET ("api.mockbin.io")
-    suspend fun getTraks(
-    ): Response<AuditorioResponse>
-
+    suspend fun getTraks(limit: Int): Response<AuditorioResponse>
 }

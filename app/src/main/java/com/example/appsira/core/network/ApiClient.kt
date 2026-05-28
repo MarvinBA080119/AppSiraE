@@ -22,6 +22,6 @@ object ApiClient {
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(AuditorioApi::class.java)
+            .create(AuditorioAPI::class.java)
     }
 }

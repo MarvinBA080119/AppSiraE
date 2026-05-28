@@ -3,7 +3,7 @@ package com.example.appsira.core.model
 import com.google.gson.annotations.SerializedName
 
 data class AuditorioResponse(
-    @SerializedName(value = "auditorios") val auditorios: List<Auditorio>
+    @SerializedName(value = "auditorios") val results: List<Auditorio>
 )
 
 data class Auditorio(
