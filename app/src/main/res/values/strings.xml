@@ -1,13 +1,16 @@
 <resources>
     <string name="app_name">AppSira</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- Accesibilidad -->
     <string name="cd_back">Regresar</string>
     <string name="cd_logo">Logo</string>
     <string name="cd_person_icon">Icono de persona</string>
     <string name="cd_lock_icon">Icono de candado</string>
+    <string name="cd_auditorio_image">Imagen del auditorio</string>
+    <string name="cd_capacidad">Capacidad</string>
+    <string name="cd_mic_mas">Agregar micrófono</string>
+    <string name="cd_mic_menos">Quitar micrófono</string>
+    <string name="cd_cancelar_reserva">Cancelar reserva</string>
 
 
     <!-- Login -->
@@ -42,4 +45,50 @@
     <string name="hint_birth_date">Fecha de nacimiento:</string>
     <string name="action_finish">Finalizar registro</string>
     <string name="date_picker_title">Selecciona tu fecha de nacimiento</string>
+
+
+    <!-- Auditorios -->
+    <string name="auditorios_title">Auditorios</string>
+    <string name="auditorios_subtitle">Explora y reserva el espacio ideal para tu evento</string>
+    <string name="capacidad_personas">Capacidad: %1$d personas</string>
+
+    <!-- Detalle / Reserva -->
+    <string name="servicios_adicionales">Servicios adicionales</string>
+    <string name="servicio_audio">Sistema de audio</string>
+    <string name="servicio_maestro">Maestro de ceremonias</string>
+    <string name="servicio_mesa">Mesa central</string>
+    <string name="servicio_microfonos_label">Micrófonos</string>
+    <string name="servicio_microfonos">%1$d micrófonos</string>
+    <string name="fecha_y_hora">Fecha y hora</string>
+    <string name="selecciona_fecha">Fecha</string>
+    <string name="selecciona_hora">Hora</string>
+    <string name="selecciona_fecha_reserva">Selecciona la fecha de tu reserva</string>
+    <string name="selecciona_hora_reserva">Selecciona la hora de tu reserva</string>
+    <string name="verificando_disponibilidad">Verificando disponibilidad…</string>
+    <string name="fecha_disponible">✓ Fecha disponible</string>
+    <string name="fecha_ocupada">✗ Este auditorio ya está ocupado ese día</string>
+    <string name="accion_reservar">Reservar</string>
+    <string name="reserva_exitosa">¡Reserva creada con éxito!</string>
+    <string name="cero" translatable="false">0</string>
+
+    <!-- Mis Reservas -->
+    <string name="reservas_title">Mis Reservas</string>
+    <string name="reservas_subtitle">Administra tus eventos próximos</string>
+    <string name="reservas_empty">Aún no tienes reservas.\n¡Explora los auditorios y crea la primera!</string>
+    <string name="reserva_fecha_hora">%1$s · %2$s hrs</string>
+    <string name="cancelar_reserva_titulo">Cancelar reserva</string>
+    <string name="cancelar_reserva_mensaje">¿Seguro que deseas cancelar tu reserva de %1$s para el %2$s?</string>
+    <string name="accion_no">No</string>
+    <string name="accion_si_cancelar">Sí, cancelar</string>
+    <string name="reserva_cancelada">Reserva cancelada</string>
+
+    <!-- Cuenta -->
+    <string name="cuenta_title">Mi Cuenta</string>
+    <string name="cuenta_sin_sesion">Sin sesión activa</string>
+    <string name="accion_cerrar_sesion">Cerrar sesión</string>
+
+    <!-- Bottom navigation -->
+    <string name="nav_auditorios">Auditorios</string>
+    <string name="nav_reservas">Reservas</string>
+    <string name="nav_cuenta">Cuenta</string>
 </resources>

@@ -12,20 +12,44 @@
         android:id="@+id/navHostFragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="@+id/main"
-        app:layout_constraintEnd_toEndOf="@+id/main"
-        app:layout_constraintTop_toTopOf="@+id/main"
-        app:layout_constraintStart_toStartOf="@+id/main"
+        android:layout_height="0dp"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_home"/>
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="@+id/main"
+        app:layout_constraintStart_toStartOf="@+id/main"
+        app:layout_constraintTop_toTopOf="@+id/main"
+        app:navGraph="@navigation/nav_home" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
         app:layout_constraintBottom_toBottomOf="@+id/main"
-        app:menu="@menu/bottom_nav_menu"/>
+        app:menu="@menu/bottom_nav_menu" />
+
+    <FrameLayout
+        android:id="@+id/loaderOverlay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#80000000"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieLoader"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_gravity="center"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loader" />
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

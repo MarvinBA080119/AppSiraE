@@ -1,10 +1,10 @@
 package com.example.appsira.core.network
 
 import com.example.appsira.core.model.AuditorioResponse
-import retrofit2.http.GET
 import retrofit2.Response
+import retrofit2.http.GET
 
 interface AuditorioAPI {
-    @GET ("api.mockbin.io")
-    suspend fun getTraks(limit: Int): Response<AuditorioResponse>
+    @GET("/")
+    suspend fun getAuditorios(): Response<AuditorioResponse>
 }

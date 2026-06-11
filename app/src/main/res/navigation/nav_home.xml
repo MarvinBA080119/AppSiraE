@@ -8,8 +8,25 @@
     <fragment
         android:id="@+id/auditorioFragment"
         android:name="com.example.appsira.home.auditorios.auditoriosFragment"
-        android:label="fragment_play_lists"
-        tools:layout="@layout/fragment_auditorios" />
+        android:label="fragment_auditorios"
+        tools:layout="@layout/fragment_auditorios">
+        <action
+            android:id="@+id/action_auditorios_to_detail"
+            app:destination="@id/auditorioDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/auditorioDetailFragment"
+        android:name="com.example.appsira.home.auditorioDetail.AuditorioDetailFragment"
+        android:label="fragment_auditorio_detail"
+        tools:layout="@layout/fragment_auditorio_detail" />
+
+    <fragment
+        android:id="@+id/reservasFragment"
+        android:name="com.example.appsira.home.reservas.ReservasFragment"
+        android:label="fragment_reservas"
+        tools:layout="@layout/fragment_reservas" />
+
     <fragment
         android:id="@+id/accountFragment"
         android:name="com.example.appsira.home.account.accountFragment"

@@ -11,16 +11,17 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class AuditorioViewModel (
+class AuditorioViewModel(
     private val service: AuditorioService = AuditorioRepository()
-): ViewModel(){
-    private val _auditorioState = MutableStateFlow<ResponseService<List<Auditorio>>?>(null)
-    val songState: StateFlow<ResponseService<List<Auditorio>>?> = _auditorioState.asStateFlow()
+) : ViewModel() {
 
-    fun loadTracks(limit: Int = 20){
+    private val _auditorioState = MutableStateFlow<ResponseService<List<Auditorio>>?>(null)
+    val auditorioState: StateFlow<ResponseService<List<Auditorio>>?> = _auditorioState.asStateFlow()
+
+    fun loadAuditorios() {
         viewModelScope.launch {
             _auditorioState.value = ResponseService.Loading
-            _auditorioState.value = service.getTracks(limit)
+            _auditorioState.value = service.getAuditorios()
         }
     }
 }

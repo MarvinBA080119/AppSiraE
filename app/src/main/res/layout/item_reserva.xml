@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="3dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivAuditorio"
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            android:contentDescription="@string/cd_auditorio_image"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Medium"
+            tools:background="@color/brand_primary_light" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvNombre"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+            android:textColor="@color/brand_primary_dark"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/btnCancelar"
+            app:layout_constraintStart_toEndOf="@+id/ivAuditorio"
+            app:layout_constraintTop_toTopOf="@+id/ivAuditorio"
+            tools:text="Auditorio Principal" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvFechaHora"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            android:textColor="@color/brand_primary_accent"
+            app:layout_constraintEnd_toStartOf="@+id/btnCancelar"
+            app:layout_constraintStart_toEndOf="@+id/ivAuditorio"
+            app:layout_constraintTop_toBottomOf="@+id/tvNombre"
+            tools:text="2026-06-15 · 18:00 hrs" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvServicios"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            android:textAppearance="?attr/textAppearanceBodySmall"
+            android:textColor="@color/brand_primary_light"
+            app:layout_constraintEnd_toStartOf="@+id/btnCancelar"
+            app:layout_constraintStart_toEndOf="@+id/ivAuditorio"
+            app:layout_constraintTop_toBottomOf="@+id/tvFechaHora"
+            tools:text="Audio · Maestro de ceremonias · 3 micrófonos" />
+
+        <ImageButton
+            android:id="@+id/btnCancelar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/cd_cancelar_reserva"
+            android:src="@drawable/ic_delete"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/estado_ocupado" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

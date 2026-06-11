@@ -6,17 +6,17 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
-    private const val BASE_URL = "https://7ca127342d2f4a08adbf5fde049972c7"
+    private const val BASE_URL = "https://4f4b81757eba4fb1920934daedfa681c.api.mockbin.io/"
 
-    private val loggin = HttpLoggingInterceptor().apply {
+    private val logging = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
     }
 
     private val client = OkHttpClient.Builder()
-        .addInterceptor(loggin)
+        .addInterceptor(logging)
         .build()
 
-    val AuditorioApi: AuditorioAPI by lazy {
+    val auditorioApi: AuditorioAPI by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(client)

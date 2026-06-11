@@ -4,10 +4,14 @@
     <item
         android:id="@+id/auditorioFragment"
         android:icon="@drawable/auditorios_ic"
-        android:title="Auditorios"/>
+        android:title="@string/nav_auditorios" />
+    <item
+        android:id="@+id/reservasFragment"
+        android:icon="@drawable/ic_event"
+        android:title="@string/nav_reservas" />
     <item
         android:id="@+id/accountFragment"
         android:icon="@drawable/account_ic"
-        android:title="Account"/>
+        android:title="@string/nav_cuenta" />
 
 </menu>
