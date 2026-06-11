@@ -19,4 +19,8 @@
 
     <color name="neutral_white">#FFFFFF</color>
     <color name="neutral_black">#000000</color>
+
+    <!-- Estados de disponibilidad de reservas -->
+    <color name="estado_disponible">#2E7D32</color>
+    <color name="estado_ocupado">#C62828</color>
 </resources>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="3dp"
+    app:rippleColor="@color/brand_primary_accent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivAuditorio"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:contentDescription="@string/cd_auditorio_image"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@color/brand_primary_light" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvNombre"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+            android:textColor="@color/brand_primary_dark"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivAuditorio"
+            tools:text="Auditorio Principal" />
+
+        <ImageView
+            android:id="@+id/ivPeople"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="14dp"
+            android:contentDescription="@string/cd_capacidad"
+            android:src="@drawable/ic_people"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNombre"
+            app:tint="@color/brand_primary_accent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCapacidad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            android:textColor="@color/brand_primary_accent"
+            app:layout_constraintBottom_toBottomOf="@+id/ivPeople"
+            app:layout_constraintStart_toEndOf="@+id/ivPeople"
+            app:layout_constraintTop_toTopOf="@+id/ivPeople"
+            tools:text="Capacidad: 500 personas" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

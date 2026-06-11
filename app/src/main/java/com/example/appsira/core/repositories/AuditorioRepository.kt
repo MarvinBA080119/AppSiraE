@@ -7,15 +7,13 @@ import com.example.appsira.core.network.AuditorioService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class AuditorioRepository: AuditorioService {
-    private val api = ApiClient.AuditorioApi
+class AuditorioRepository : AuditorioService {
+    private val api = ApiClient.auditorioApi
 
-    override suspend fun getTracks(limit: Int): ResponseService<List<Auditorio>> =
+    override suspend fun getAuditorios(): ResponseService<List<Auditorio>> =
         withContext(Dispatchers.IO) {
             try {
-                val response = api.getTraks(
-                    limit = limit
-                )
+                val response = api.getAuditorios()
                 if (response.isSuccessful) {
                     val body = response.body()
                     if (body != null) {
@@ -28,7 +26,7 @@ class AuditorioRepository: AuditorioService {
                 }
             } catch (e: Exception) {
                 ResponseService.Error(
-                    "No se pudieron cargar las canciones: ${e.localizedMessage}"
+                    "No se pudieron cargar los auditorios: ${e.localizedMessage}"
                 )
             }
         }
