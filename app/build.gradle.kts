@@ -54,6 +54,8 @@ dependencies {
     implementation(libs.firebase.firestore)
     implementation(libs.coroutines.core)
     implementation(libs.coroutines.android)
+    implementation(libs.navigation.fragment.ktx)
+    implementation(libs.navigation.ui.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
