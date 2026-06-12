@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.appsira.R
 import com.example.appsira.core.FragmentCommunicator
@@ -24,9 +26,15 @@ class ReservasFragment : Fragment() {
     private var _binding: FragmentReservasBinding? = null
     private val binding get() = _binding!!
     private val viewModel by viewModels<ReservasViewModel>()
+    private val sharedViewModel by activityViewModels<ReservasSharedViewModel>()
     private lateinit var communicator: FragmentCommunicator
 
-    private val adapter = ReservasAdapter { reserva ->
+    private val adapter = ReservasAdapter(
+        onClick = { reserva ->
+            sharedViewModel.selectReserva(reserva)
+            findNavController().navigate(R.id.action_reservas_to_edit)
+        }
+    ) { reserva ->
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(getString(R.string.cancelar_reserva_titulo))
             .setMessage(

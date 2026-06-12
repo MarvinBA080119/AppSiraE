@@ -8,6 +8,7 @@ data class Reserva(
     val auditorioCapacidad: Int = 0,
     val userId: String = "",
     val userEmail: String = "",
+    val nombreEvento: String = "",
     val fecha: String = "",
     val hora: String = "",
     val sistemaAudio: Boolean = false,

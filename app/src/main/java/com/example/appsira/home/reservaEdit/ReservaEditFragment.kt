@@ -1,4 +1,4 @@
-package com.example.appsira.home.auditorioDetail
+package com.example.appsira.home.reservaEdit
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,12 +15,13 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.appsira.R
 import com.example.appsira.core.ResponseService
-import com.example.appsira.core.model.Auditorio
-import com.example.appsira.databinding.FragmentAuditorioDetailBinding
-import com.example.appsira.home.auditorios.AuditoriosSharedViewModel
+import com.example.appsira.core.model.Reserva
+import com.example.appsira.databinding.FragmentReservaEditBinding
+import com.example.appsira.home.reservas.ReservasSharedViewModel
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
@@ -30,45 +31,55 @@ import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 
-class AuditorioDetailFragment : Fragment() {
+class ReservaEditFragment : Fragment() {
 
-    private var _binding: FragmentAuditorioDetailBinding? = null
+    private var _binding: FragmentReservaEditBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel by viewModels<AuditorioDetailViewModel>()
-    private val sharedViewModel by activityViewModels<AuditoriosSharedViewModel>()
-    private lateinit var auditorio: Auditorio
+    private val viewModel by viewModels<ReservaEditViewModel>()
+    private val sharedViewModel by activityViewModels<ReservasSharedViewModel>()
+    private lateinit var reserva: Reserva
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentAuditorioDetailBinding.inflate(inflater, container, false)
+        _binding = FragmentReservaEditBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val selected = sharedViewModel.selectedAuditorio.value
+        val selected = sharedViewModel.selectedReserva.value
         if (selected == null) {
             findNavController().navigateUp()
             return
         }
-        auditorio = selected
-        bindAuditorioInfo()
+        reserva = selected
+        viewModel.init(reserva)
+        bindReservaInfo()
         setupListeners()
         observeViewModel()
     }
 
-    private fun bindAuditorioInfo() {
-        binding.tvNombre.text = auditorio.nombre
+    private fun bindReservaInfo() {
+        binding.tvNombre.text = reserva.auditorioNombre
         binding.tvCapacidad.text =
-            getString(R.string.capacidad_personas, auditorio.capacidad)
+            getString(R.string.capacidad_personas, reserva.auditorioCapacidad)
         Glide.with(binding.ivAuditorio)
-            .load(auditorio.imagen)
+            .load(reserva.auditorioImagen)
             .placeholder(R.color.brand_primary_light)
             .centerCrop()
             .into(binding.ivAuditorio)
+
+        // Precargar los valores actuales de la reserva
+        binding.etNombreEvento.setText(reserva.nombreEvento)
+        binding.switchAudio.isChecked = reserva.sistemaAudio
+        binding.switchMaestro.isChecked = reserva.maestroCeremonia
+        binding.switchMesa.isChecked = reserva.mesaCentral
+        binding.tvNumMicrofonos.text = reserva.numMicrofonos.toString()
+        binding.btnFecha.text = reserva.fecha
+        binding.btnHora.text = reserva.hora
     }
 
     private fun setupListeners() {
@@ -96,16 +107,19 @@ class AuditorioDetailFragment : Fragment() {
                 sdf.timeZone = TimeZone.getTimeZone("UTC")
                 val fecha = sdf.format(Date(millis))
                 binding.btnFecha.text = fecha
-                viewModel.seleccionarFecha(fecha, auditorio.id)
+                viewModel.seleccionarFecha(fecha)
             }
-            picker.show(parentFragmentManager, "RESERVA_DATE_PICKER")
+            picker.show(parentFragmentManager, "EDIT_DATE_PICKER")
         }
 
         binding.btnHora.setOnClickListener {
+            val partes = binding.btnHora.text.toString().split(":")
+            val horaInicial = partes.getOrNull(0)?.toIntOrNull() ?: 10
+            val minutoInicial = partes.getOrNull(1)?.toIntOrNull() ?: 0
             val picker = MaterialTimePicker.Builder()
                 .setTimeFormat(TimeFormat.CLOCK_24H)
-                .setHour(10)
-                .setMinute(0)
+                .setHour(horaInicial)
+                .setMinute(minutoInicial)
                 .setTitleText(getString(R.string.selecciona_hora_reserva))
                 .build()
             picker.addOnPositiveButtonClickListener {
@@ -113,18 +127,34 @@ class AuditorioDetailFragment : Fragment() {
                 binding.btnHora.text = hora
                 viewModel.seleccionarHora(hora)
             }
-            picker.show(parentFragmentManager, "RESERVA_TIME_PICKER")
+            picker.show(parentFragmentManager, "EDIT_TIME_PICKER")
         }
 
-        binding.btnReservar.setOnClickListener {
-            viewModel.reservar(
-                auditorio = auditorio,
+        binding.btnGuardar.setOnClickListener {
+            viewModel.guardarCambios(
                 nombreEvento = binding.etNombreEvento.text.toString(),
                 sistemaAudio = binding.switchAudio.isChecked,
                 maestroCeremonia = binding.switchMaestro.isChecked,
                 mesaCentral = binding.switchMesa.isChecked,
                 numMicrofonos = binding.tvNumMicrofonos.text.toString().toInt()
             )
+        }
+
+        binding.btnEliminar.setOnClickListener {
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle(getString(R.string.eliminar_reserva_titulo))
+                .setMessage(
+                    getString(
+                        R.string.cancelar_reserva_mensaje,
+                        reserva.auditorioNombre,
+                        binding.btnFecha.text
+                    )
+                )
+                .setNegativeButton(getString(R.string.accion_no), null)
+                .setPositiveButton(getString(R.string.accion_si_eliminar)) { _, _ ->
+                    viewModel.eliminarReserva()
+                }
+                .show()
         }
     }
 
@@ -142,7 +172,7 @@ class AuditorioDetailFragment : Fragment() {
                                 binding.tvDisponibilidad.setTextColor(
                                     requireContext().getColor(R.color.brand_primary_light)
                                 )
-                                binding.btnReservar.isEnabled = false
+                                binding.btnGuardar.isEnabled = false
                             }
                             is ResponseService.Success -> {
                                 binding.tvDisponibilidad.isVisible = true
@@ -152,14 +182,14 @@ class AuditorioDetailFragment : Fragment() {
                                     binding.tvDisponibilidad.setTextColor(
                                         requireContext().getColor(R.color.estado_disponible)
                                     )
-                                    binding.btnReservar.isEnabled = true
+                                    binding.btnGuardar.isEnabled = true
                                 } else {
                                     binding.tvDisponibilidad.text =
                                         getString(R.string.fecha_ocupada)
                                     binding.tvDisponibilidad.setTextColor(
                                         requireContext().getColor(R.color.estado_ocupado)
                                     )
-                                    binding.btnReservar.isEnabled = false
+                                    binding.btnGuardar.isEnabled = false
                                 }
                             }
                             is ResponseService.Error -> {
@@ -168,7 +198,7 @@ class AuditorioDetailFragment : Fragment() {
                                 binding.tvDisponibilidad.setTextColor(
                                     requireContext().getColor(R.color.estado_ocupado)
                                 )
-                                binding.btnReservar.isEnabled = false
+                                binding.btnGuardar.isEnabled = false
                             }
                             null -> binding.tvDisponibilidad.isVisible = false
                         }
@@ -176,22 +206,45 @@ class AuditorioDetailFragment : Fragment() {
                 }
 
                 launch {
-                    viewModel.reservaState.collect { state ->
+                    viewModel.guardarState.collect { state ->
                         when (state) {
-                            is ResponseService.Loading -> binding.btnReservar.isEnabled = false
+                            is ResponseService.Loading -> binding.btnGuardar.isEnabled = false
                             is ResponseService.Success -> {
                                 Snackbar.make(
                                     binding.root,
-                                    getString(R.string.reserva_exitosa),
+                                    getString(R.string.reserva_actualizada),
                                     Snackbar.LENGTH_LONG
                                 ).show()
-                                viewModel.consumeReservaState()
+                                viewModel.consumeGuardarState()
                                 findNavController().navigateUp()
                             }
                             is ResponseService.Error -> {
-                                binding.btnReservar.isEnabled = true
+                                binding.btnGuardar.isEnabled = true
                                 Snackbar.make(binding.root, state.error, Snackbar.LENGTH_LONG).show()
-                                viewModel.consumeReservaState()
+                                viewModel.consumeGuardarState()
+                            }
+                            null -> Unit
+                        }
+                    }
+                }
+
+                launch {
+                    viewModel.eliminarState.collect { state ->
+                        when (state) {
+                            is ResponseService.Loading -> binding.btnEliminar.isEnabled = false
+                            is ResponseService.Success -> {
+                                Snackbar.make(
+                                    binding.root,
+                                    getString(R.string.reserva_cancelada),
+                                    Snackbar.LENGTH_SHORT
+                                ).show()
+                                viewModel.consumeEliminarState()
+                                findNavController().navigateUp()
+                            }
+                            is ResponseService.Error -> {
+                                binding.btnEliminar.isEnabled = true
+                                Snackbar.make(binding.root, state.error, Snackbar.LENGTH_LONG).show()
+                                viewModel.consumeEliminarState()
                             }
                             null -> Unit
                         }
