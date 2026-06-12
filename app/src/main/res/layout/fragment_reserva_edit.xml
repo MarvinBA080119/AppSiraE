@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/neutral_white"
-    tools:context=".home.auditorioDetail.AuditorioDetailFragment">
+    tools:context=".home.reservaEdit.ReservaEditFragment">
 
     <ImageView
         android:id="@+id/ivAuditorio"
@@ -14,7 +14,7 @@
         android:contentDescription="@string/cd_auditorio_image"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.30"
+        app:layout_constraintHeight_percent="0.26"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:background="@color/brand_primary_light" />
@@ -53,22 +53,34 @@
             android:paddingBottom="24dp">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvNombre"
+                android:id="@+id/tvEditTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:text="@string/editar_reserva_title"
                 android:textAppearance="?attr/textAppearanceHeadlineSmall"
                 android:textColor="@color/brand_primary_dark"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvNombre"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:textColor="@color/brand_primary_accent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvEditTitle"
                 tools:text="Auditorio Principal" />
 
             <ImageView
                 android:id="@+id/ivPeople"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="6dp"
                 android:contentDescription="@string/cd_capacidad"
                 android:src="@drawable/ic_people"
                 app:layout_constraintStart_toStartOf="parent"
@@ -113,7 +125,7 @@
                 android:id="@+id/tvServiciosTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="20dp"
                 android:text="@string/servicios_adicionales"
                 android:textAppearance="?attr/textAppearanceTitleMedium"
                 android:textColor="@color/brand_primary_dark"
@@ -273,21 +285,37 @@
                 tools:visibility="visible" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnReservar"
+                android:id="@+id/btnGuardar"
                 android:layout_width="0dp"
                 android:layout_height="56dp"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/brand_primary"
-                android:enabled="false"
-                android:text="@string/accion_reservar"
+                android:text="@string/accion_guardar_cambios"
                 android:textColor="@color/brand_on_primary"
                 android:textSize="16sp"
                 app:cornerRadius="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDisponibilidad" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEliminar"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="12dp"
+                android:text="@string/accion_eliminar_reserva"
+                android:textColor="@color/estado_ocupado"
+                android:textSize="16sp"
+                app:cornerRadius="16dp"
+                app:icon="@drawable/ic_delete"
+                app:iconTint="@color/estado_ocupado"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvDisponibilidad"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintTop_toBottomOf="@+id/btnGuardar"
+                app:layout_constraintVertical_bias="1.0"
+                app:strokeColor="@color/estado_ocupado" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -53,6 +53,7 @@
     <string name="capacidad_personas">Capacidad: %1$d personas</string>
 
     <!-- Detalle / Reserva -->
+    <string name="hint_nombre_evento">Nombre del evento</string>
     <string name="servicios_adicionales">Servicios adicionales</string>
     <string name="servicio_audio">Sistema de audio</string>
     <string name="servicio_maestro">Maestro de ceremonias</string>
@@ -80,11 +81,24 @@
     <string name="cancelar_reserva_mensaje">¿Seguro que deseas cancelar tu reserva de %1$s para el %2$s?</string>
     <string name="accion_no">No</string>
     <string name="accion_si_cancelar">Sí, cancelar</string>
-    <string name="reserva_cancelada">Reserva cancelada</string>
+    <string name="reserva_cancelada">Reserva eliminada</string>
+
+    <!-- Editar reserva -->
+    <string name="editar_reserva_title">Editar reserva</string>
+    <string name="accion_guardar_cambios">Guardar cambios</string>
+    <string name="accion_eliminar_reserva">Eliminar reserva</string>
+    <string name="eliminar_reserva_titulo">Eliminar reserva</string>
+    <string name="accion_si_eliminar">Sí, eliminar</string>
+    <string name="reserva_actualizada">¡Reserva actualizada con éxito!</string>
 
     <!-- Cuenta -->
     <string name="cuenta_title">Mi Cuenta</string>
     <string name="cuenta_sin_sesion">Sin sesión activa</string>
+    <string name="cuenta_nombre_completo">%1$s %2$s</string>
+    <string name="cuenta_usuario_label">Usuario</string>
+    <string name="cuenta_telefono_label">Teléfono</string>
+    <string name="cuenta_nacimiento_label">Fecha de nacimiento</string>
+    <string name="cuenta_correo_label">Correo</string>
     <string name="accion_cerrar_sesion">Cerrar sesión</string>
 
     <!-- Bottom navigation -->

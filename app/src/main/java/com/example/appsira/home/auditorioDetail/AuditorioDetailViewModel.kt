@@ -46,6 +46,7 @@ class AuditorioDetailViewModel(
 
     fun reservar(
         auditorio: Auditorio,
+        nombreEvento: String,
         sistemaAudio: Boolean,
         maestroCeremonia: Boolean,
         mesaCentral: Boolean,
@@ -54,6 +55,10 @@ class AuditorioDetailViewModel(
         val fecha = _fechaSeleccionada.value
         val hora = _horaSeleccionada.value
 
+        if (nombreEvento.isBlank()) {
+            _reservaState.value = ResponseService.Error("Escribe el nombre del evento")
+            return
+        }
         if (fecha == null) {
             _reservaState.value = ResponseService.Error("Selecciona una fecha para tu reserva")
             return
@@ -64,6 +69,7 @@ class AuditorioDetailViewModel(
         }
 
         val reserva = Reserva(
+            nombreEvento = nombreEvento.trim(),
             auditorioId = auditorio.id,
             auditorioNombre = auditorio.nombre,
             auditorioImagen = auditorio.imagen,

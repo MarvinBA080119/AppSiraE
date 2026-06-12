@@ -45,7 +45,8 @@ class HomeActivity : AppCompatActivity(), FragmentCommunicator {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             binding.bottomNavigationView.isVisible =
-                destination.id != R.id.auditorioDetailFragment
+                destination.id != R.id.auditorioDetailFragment &&
+                        destination.id != R.id.reservaEditFragment
         }
     }
 

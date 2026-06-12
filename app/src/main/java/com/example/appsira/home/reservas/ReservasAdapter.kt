@@ -12,7 +12,8 @@ import com.example.appsira.core.model.Reserva
 import com.example.appsira.databinding.ItemReservaBinding
 
 class ReservasAdapter(
-    private val onCancelar: (Reserva) -> Unit
+    private val onClick: (Reserva) -> Unit,
+    private val onEliminar: (Reserva) -> Unit
 ) : ListAdapter<Reserva, ReservasAdapter.ReservaViewHolder>(DiffCallback) {
 
     object DiffCallback : DiffUtil.ItemCallback<Reserva>() {
@@ -29,7 +30,18 @@ class ReservasAdapter(
 
         fun bind(reserva: Reserva) {
             val context = binding.root.context
-            binding.tvNombre.text = reserva.auditorioNombre
+
+            // Título: nombre del evento (si la reserva es antigua y no tiene,
+            // se muestra el nombre del auditorio como título)
+            if (reserva.nombreEvento.isNotBlank()) {
+                binding.tvEvento.text = reserva.nombreEvento
+                binding.tvNombre.isVisible = true
+                binding.tvNombre.text = reserva.auditorioNombre
+            } else {
+                binding.tvEvento.text = reserva.auditorioNombre
+                binding.tvNombre.isVisible = false
+            }
+
             binding.tvFechaHora.text = context.getString(
                 R.string.reserva_fecha_hora, reserva.fecha, reserva.hora
             )
@@ -50,7 +62,8 @@ class ReservasAdapter(
                 .centerCrop()
                 .into(binding.ivAuditorio)
 
-            binding.btnCancelar.setOnClickListener { onCancelar(reserva) }
+            binding.root.setOnClickListener { onClick(reserva) }
+            binding.btnCancelar.setOnClickListener { onEliminar(reserva) }
         }
     }
 
